@@ -1,8 +1,10 @@
 import Head from 'next/head';
+import { inputStyle } from '../../styles/styledComponent';
 
 export default function Login() {
-  let inputStyle =
-    'block p-2 mb-4 w-full text-sm text-gray-900 bg-white rounded-lg border focus:outline-none focus:shadow-outline py-3';
+  // let inputStyle =
+  //   'block p-2 mb-4 w-full text-sm focus:ring focus:ring-slate-100 drop-shadow-sm text-gray-900 bg-white rounded-lg border focus:outline-none focus:shadow-outline py-3 px-4';
+  console.log({ inputStyle });
   return (
     <div className="flex justify-center items-center h-screen">
       <Head>
@@ -14,20 +16,25 @@ export default function Login() {
         className="
          flex 
          flex-col
-         shadow-md
          w-1/4
          h-96
          p-10
-         border
          rounded-md
+         shadow
+         border
+         border-slate-100	
          "
       >
-        <span className="mb-8 text-2xl">Sign In</span>
+        <span className="mb-8 text-2xl font-bold">Sign In</span>
         <input type="text" placeholder="Email" className={inputStyle} />
         <input type="password" placeholder="Password" className={inputStyle} />
-        <input type="submit" value="SIGN IN" className="bg-emerald-300 py-2 rounded" />
+        <input
+          type="submit"
+          value="SIGN IN"
+          className="bg-violet-400 py-2 rounded cursor-pointer hover:bg-violet-500 duration-300	"
+        />
         <span className="mt-12 text-center">
-          Dont have an account yet ? <a>Sign Up</a>
+          Dont have an account yet ? <a className="text-indigo-600">Sign Up</a>
         </span>
       </form>
     </div>
