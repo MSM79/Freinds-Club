@@ -1,8 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: ['./pages/**/*.{js,ts,jsx,tsx}', './ui/components/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    placeholderColor: (theme) => theme('colors'),
+    placeholderColor: {
+      primary: '#435486',
+    },
+    plugins: [],
   },
-  plugins: [],
 };
