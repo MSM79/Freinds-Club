@@ -10,7 +10,7 @@ export default function Input(props) {
       className="
       p-2
       py-2 
-      px-5
+      px-12
       mb-4
       block
       w-full

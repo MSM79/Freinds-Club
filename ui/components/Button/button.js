@@ -5,8 +5,7 @@ export default function Button(props) {
       type={type}
       value={value}
       name={name}
-      style={{ backgroundColor: '#5053ff' }}
-      className="py-3 rounded-lg cursor-pointer hover:bg-violet-500 duration-300 text-slate-100 font-bold text-sm"
+      className="bg-[#5053ff] hover:bg-[#5003fd] active:bg-[#f45 py-3 rounded-lg cursor-pointer hover:bg-violet-500 duration-200 text-slate-100 font-bold text-sm"
     >
       {text}
     </button>
