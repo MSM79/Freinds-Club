@@ -1,10 +1,20 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import React, { useEffect } from 'react';
 import Header from '../ui/components/Header';
-export default function Home() {
-  fetch('https://jsonplaceholder.typicode.com/todos/1')
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+import styles from '../styles/Home.module.css';
+import { load } from '../store/slices/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
+
+function Home() {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((result) => dispatch(load(result)));
+  }, [dispatch]);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,6 +23,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
+      <button className="bg-[#f45] px-4 py-5">mamad</button>
+      {/* <div className="flex w-full flex-wrap justify-center">
+        {data.map((data) => (
+          <div
+            key={data.userId}
+            className="flex m-4 justify-center bg-white h-12 items-center shadow appearance-none rounded-lg py-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/4"
+          >
+            {data.title}
+          </div>
+        ))}
+      </div> */}
     </div>
   );
 }
+
+export default Home;
