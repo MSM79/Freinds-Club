@@ -12,7 +12,17 @@ function Home() {
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
-      .then((result) => dispatch(load(result)));
+      .then((result) => {
+        dispatch(
+          load(
+            result.map((x) => ({
+              id: x.id,
+              name: x.name,
+              username: x.username.toLowerCase(),
+            })),
+          ),
+        );
+      });
   }, [dispatch]);
 
   return (
@@ -23,17 +33,6 @@ function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <button className="bg-[#f45] px-4 py-5">mamad</button>
-      {/* <div className="flex w-full flex-wrap justify-center">
-        {data.map((data) => (
-          <div
-            key={data.userId}
-            className="flex m-4 justify-center bg-white h-12 items-center shadow appearance-none rounded-lg py-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline w-1/4"
-          >
-            {data.title}
-          </div>
-        ))}
-      </div> */}
     </div>
   );
 }

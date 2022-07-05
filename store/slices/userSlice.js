@@ -8,8 +8,11 @@ export const userSlice = createSlice({
   reducers: {
     load: (state, action) => action.payload,
   },
+  searchUser: (state, action) => {
+    return state.name.filter((x) => x.name === action.payload.name);
+  },
 });
 
-export const { load } = userSlice.actions;
+export const { load, searchUser } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -1,9 +1,17 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Button from '../Button/button';
+import Search from '../Search/search';
+import User from '../user/user';
 
 export default function Navbar({ fixed }) {
-  const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const dispatch = useDispatch();
+  const [users, search] = useSelector((state) => [state.user, state.search]);
+  const filteredUser = users.filter((d) => d.username.includes(search));
+  console.log(filteredUser);
+
+  const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <>
       <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3">
@@ -36,46 +44,7 @@ export default function Navbar({ fixed }) {
               </svg>
             </button>
           </div>
-
-          <form className="w-3/4 flex justify-center xs:w-full">
-            <div className="relative">
-              <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
-                <svg
-                  className="w-6 h-6 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  ></path>
-                </svg>
-              </div>
-              <input
-                type="search"
-                id="default-search"
-                className="block 
-                p-4 
-                pl-12
-                h-12 
-                w-full 
-                text-xl 
-                text-gray-900 
-                bg-gray-100 
-                rounded-2xl
-                shadow-outline
-                outline-none 
-                "
-                placeholder="Search"
-                required
-              />
-            </div>
-          </form>
-
+          <Search />
           <div
             className={
               'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')
@@ -115,6 +84,15 @@ export default function Navbar({ fixed }) {
               </li>
             </ul>
           </div>
+        </div>
+        <div className="absolute left-[37%] top-[87px] bg-white w-[370px] h-[300px] overflow-y">
+          {filteredUser.map((user) => (
+            <Link href="/user/[username].js" key={user.id}>
+              <a>
+                <User user={user} name={user.name} username={user.username} />
+              </a>
+            </Link>
+          ))}
         </div>
       </nav>
     </>
