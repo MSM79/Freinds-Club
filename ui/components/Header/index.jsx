@@ -88,7 +88,7 @@ export default function Navbar({ fixed }) {
         <div className="absolute left-[37%] top-[87px] bg-white w-[370px] h-[300px] overflow-y">
           {filteredUser.map((user) => (
             <div key={`user-${user.id}`}>
-              <Link href={`/user/${encodeURIComponent(user.id, user.name, user.title)}`}>
+              <Link href={`/user/${encodeURIComponent(user.username)}`}>
                 <a>
                   <User name={user.name} username={user.username} />
                 </a>

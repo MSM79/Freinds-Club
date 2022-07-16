@@ -2,29 +2,8 @@ import Head from 'next/head';
 import React, { useEffect } from 'react';
 import Header from '../ui/components/Header';
 import styles from '../styles/Home.module.css';
-import { load } from '../store/slices/userSlice';
-import { useSelector, useDispatch } from 'react-redux';
 
 function Home() {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((result) => {
-        dispatch(
-          load(
-            result.map((x) => ({
-              id: x.id,
-              name: x.name,
-              username: x.username.toLowerCase(),
-            })),
-          ),
-        );
-      });
-  }, [dispatch]);
-
   return (
     <div className={styles.container}>
       <Head>

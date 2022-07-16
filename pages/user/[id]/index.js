@@ -1,11 +1,20 @@
 import { useRouter } from 'next/router';
+import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
 
-function User(props) {
-  const { name, username, title } = props;
+function User() {
   const router = useRouter();
   const { id } = router.query;
+  console.log(id);
+  const users = useSelector((state) => state.user);
+  console.log(users);
+  const foundUser = users.find((user) => user.username === id);
+  console.log(foundUser);
+
+  if (!foundUser) {
+    return <div>not found</div>;
+  }
 
   return (
     <>
@@ -34,17 +43,17 @@ function User(props) {
           </div>
           <div className="text-center mt-2">
             <h3 className="text-2xl text-slate-700 font-bold leading-normal mb-1">
-              {name}
+              {foundUser.name}
             </h3>
             <div className="text-xs mt-0 mb-2 text-slate-400 font-bold uppercase">
               <i className="fas fa-map-marker-alt mr-2 text-slate-400 opacity-75"></i>
-              {username}
+              {foundUser.username}
             </div>
           </div>
           <div className="mt-6 py-6 border-t border-slate-200 text-center">
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-4">
-                <p className="font-light leading-relaxed text-slate-600 mb-4">{title}</p>
+                <p className="font-light leading-relaxed text-slate-600 mb-4">title</p>
                 <a
                   href="javascript:;"
                   className="font-normal text-slate-700 hover:text-slate-400"
