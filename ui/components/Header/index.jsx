@@ -4,6 +4,8 @@ import Link from 'next/link';
 import Button from '../Button/button';
 import Search from '../Search/search';
 import User from '../user/user';
+import style from './style.module.css';
+import classNames from 'classnames';
 
 export default function Navbar({ fixed }) {
   const dispatch = useDispatch();
@@ -14,9 +16,9 @@ export default function Navbar({ fixed }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
     <>
-      <nav className="relative flex flex-wrap items-center justify-between px-2 py-3 bg-white mb-3">
-        <div className="container px-4 mx-auto flex flex-wrap items-center justify-between">
-          <div className="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
+      <nav className="relative px-2 py-3 bg-white mb-3">
+        <div className="container px-4 mx-auto flex items-center ">
+          <div className="w-full relative lg:w-auto lg:static lg:block lg:justify-start">
             <Link href="/">
               <a className="text-md font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-[#5053ff]">
                 Freinds Club
@@ -44,10 +46,13 @@ export default function Navbar({ fixed }) {
               </svg>
             </button>
           </div>
-          <Search />
+          <div className={classNames('w-full flex search', style.search)}>
+            <Search />
+          </div>
           <div
             className={
-              'lg:flex flex-grow items-center' + (navbarOpen ? ' flex' : ' hidden')
+              'lg:flex flex-grow items-center' +
+              (navbarOpen ? ' flex' : ' hidden')
             }
             id="example-navbar-danger"
           >
@@ -85,7 +90,12 @@ export default function Navbar({ fixed }) {
             </ul>
           </div>
         </div>
-        <div className="absolute left-[37%] top-[87px] bg-white w-[370px] h-[300px] overflow-y">
+        <div
+          className={classNames(
+            'absolute left-[32%] top-[87px] bg-white w-[370px] h-[300px] overflow-y',
+            style.userContent,
+          )}
+        >
           {filteredUser.map((user) => (
             <div key={`user-${user.id}`}>
               <Link href={`/user/${encodeURIComponent(user.username)}`}>
