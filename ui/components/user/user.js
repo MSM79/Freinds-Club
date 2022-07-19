@@ -1,10 +1,10 @@
 export default function User(props) {
   const { username, name } = props;
   return (
-    <div className="flex flex-col container mt-1 max-w-md mx-auto w-full items-center justify-center bg-white shadow">
+    <div className="flex flex-col container mt-1 max-w-md mx-auto h-14 w-3/2 items-center justify-center bg-white shadow rounded-xl">
       <ul className="flex flex-col divide-y w-full">
         <li className="flex flex-row">
-          <div className="select-none cursor-pointer hover:bg-gray-100 flex flex-1 items-center p-4">
+          <div className="select-none cursor-pointer hover:bg-gray-100 h-14 rounded-xl flex flex-1 items-center p-4">
             <div className="flex flex-col w-10 h-10 justify-center items-center mr-4">
               <a href="#" className="block relative">
                 <img

@@ -10,8 +10,11 @@ import classNames from 'classnames';
 export default function Navbar({ fixed }) {
   const dispatch = useDispatch();
   const [users, search] = useSelector((state) => [state.user, state.search]);
-  const filteredUser = users.filter((d) => d.username.includes(search));
-  console.log(filteredUser);
+  let filteredUser = [];
+
+  if (search !== '') {
+    filteredUser = users.filter((d) => d.username.includes(search));
+  }
 
   const [navbarOpen, setNavbarOpen] = useState(false);
   return (
@@ -92,7 +95,7 @@ export default function Navbar({ fixed }) {
         </div>
         <div
           className={classNames(
-            'absolute left-[32%] top-[87px] bg-white w-[370px] h-[300px] overflow-y',
+            'absolute left-[34%] top-[87px] w-[370px] h-[300px] overflow-y',
             style.userContent,
           )}
         >

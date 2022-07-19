@@ -7,7 +7,7 @@ export default function Search() {
     dispatch(changeValue(e.target.value.toLowerCase()));
   };
   return (
-    <form className="w-1/3 m-auto xs:w-full">
+    <form className="w-2/6 m-auto xs:w-full">
       <div className="relative">
         <div className="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
           <svg
