@@ -1,23 +1,141 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Link from 'next/link';
 import Image from 'next/image';
+import Head from 'next/Head';
+import { fromJSON } from 'postcss';
+import Photos from '../../../ui/components/Photos';
+import '../../../ui/components/tabs';
+import './style.module.css';
 
 function User() {
   const router = useRouter();
   const { id } = router.query;
-  console.log(id);
   const users = useSelector((state) => state.user);
-  console.log(users);
   const foundUser = users.find((user) => user.username === id);
-  console.log(foundUser);
 
   if (!foundUser) {
     return <div>not found</div>;
   }
 
+  const Tabs = ({ color }) => {
+    const [openTab, setOpenTab] = useState(1);
+    return (
+      <>
+        <div className="flex flex-wrap justify-center">
+          <div className="w-[50%]">
+            <ul
+              className="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row"
+              role="tablist"
+            >
+              <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                <a
+                  className={
+                    'text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                    (openTab === 1
+                      ? 'text-white bg-[#5053ff]'
+                      : 'text-' + color + '-600 bg-white')
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenTab(1);
+                  }}
+                  data-toggle="tab"
+                  href="#link1"
+                  role="tablist"
+                >
+                  Posts
+                </a>
+              </li>
+              <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                <a
+                  className={
+                    'text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                    (openTab === 2
+                      ? 'text-white bg-[#5053ff]'
+                      : 'text-' + color + '-600 bg-white')
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenTab(2);
+                  }}
+                  data-toggle="tab"
+                  href="#link2"
+                  role="tablist"
+                >
+                  Photos
+                </a>
+              </li>
+              <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
+                <a
+                  className={
+                    'text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal ' +
+                    (openTab === 3
+                      ? 'text-white  bg-[#5053ff]'
+                      : 'text-' + color + '-600 bg-white')
+                  }
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setOpenTab(3);
+                  }}
+                  data-toggle="tab"
+                  href="#link3"
+                  role="tablist"
+                >
+                  Todos
+                </a>
+              </li>
+            </ul>
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
+              <div className="px-4 py-5 flex-auto">
+                <div className="tab-content tab-space">
+                  <div
+                    className={openTab === 1 ? 'block' : 'hidden'}
+                    id="link1"
+                  >
+                    <p>
+                      Collaboratively administrate empowered markets via
+                      plug-and-play networks. Dynamically procrastinate B2C
+                      users after installed base benefits.
+                      <br />
+                      <br /> Dramatically visualize customer directed
+                      convergence without revolutionary ROI.
+                    </p>
+                  </div>
+                  <div
+                    className={openTab === 2 ? 'block' : 'hidden'}
+                    id="link2"
+                  >
+                    <Photos user={foundUser} />
+                  </div>
+                  <div
+                    className={openTab === 3 ? 'block' : 'hidden'}
+                    id="link3"
+                  >
+                    <p>
+                      Efficiently unleash cross-media information without
+                      cross-media value. Quickly maximize timely deliverables
+                      for real-time schemas.
+                      <br />
+                      <br /> Dramatically maintain clicks-and-mortar solutions
+                      without functional solutions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
+      <Head>
+        <title>{id}</title>
+      </Head>
       <h1>user: {id}</h1>
       <div className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
         <div className="px-6">
@@ -53,7 +171,9 @@ function User() {
           <div className="mt-6 py-6 border-t border-slate-200 text-center">
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-4">
-                <p className="font-light leading-relaxed text-slate-600 mb-4">title</p>
+                <p className="font-light leading-relaxed text-slate-600 mb-4">
+                  title
+                </p>
                 <a
                   href="javascript:;"
                   className="font-normal text-slate-700 hover:text-slate-400"
@@ -65,6 +185,7 @@ function User() {
           </div>
         </div>
       </div>
+      <Tabs />;
     </>
   );
 }
