@@ -119,7 +119,7 @@ function User() {
       <Head>
         <title>{id}</title>
       </Head>
-      <h1>user: {id}</h1>
+      <div className="p-1"></div>
       <div className="relative max-w-md mx-auto md:max-w-2xl mt-6 min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-xl mt-16">
         <div className="px-6">
           <div className="flex flex-wrap justify-center">
@@ -157,12 +157,6 @@ function User() {
                 <p className="font-light leading-relaxed text-slate-600 mb-4">
                   User id : {foundUser.id}
                 </p>
-                <a
-                  href="javascript:;"
-                  className="font-normal text-slate-700 hover:text-slate-400"
-                >
-                  Follow Account
-                </a>
               </div>
             </div>
           </div>

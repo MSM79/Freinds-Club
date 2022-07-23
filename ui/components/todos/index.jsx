@@ -14,11 +14,11 @@ export default function Posts({ user }) {
   return (
     <div>
       {filterTodos.map((todo) => (
-        <div className="mb-4 bg-gray-200">
-          <p>user id : {todo.userId}</p>
-          <p>id: {todo.id}</p>
-          <div> Post Title : {todo.title}</div>
-          <div> Post Body : {todo.completed ? 'true' : 'false'}</div>
+        <div className="border-b px-4 py-3">
+          <div className="font-medium mb-2"> {todo.title}</div>
+          <div className="uppercase text-gray-400">
+            {todo.completed ? 'Completed' : 'Not Completed'}
+          </div>
         </div>
       ))}
     </div>

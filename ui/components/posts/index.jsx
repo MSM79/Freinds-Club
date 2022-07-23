@@ -14,11 +14,9 @@ export default function Posts({ user }) {
   return (
     <div>
       {filterPost.map((post) => (
-        <div className="mb-4 bg-gray-200">
-          <p>user id : {post.userId}</p>
-          <p>id: {post.id}</p>
-          <div> Post Title : {post.title}</div>
-          <div> Post Body : {post.body}</div>
+        <div className="border-b px-4 py-5 hover:bg-gray-100 hover:cursor-pointer">
+          <div className="text-lg font-bold mb-2">{post.title}</div>
+          <div className="text-base text-gray-500">{post.body}</div>
         </div>
       ))}
     </div>
