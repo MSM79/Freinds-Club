@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Head from 'next/Head';
 import Photos from '../../../ui/components/Photos';
 import Posts from '../../../ui/components/posts';
+import Todos from '../../../ui/components/todos';
 
 function User() {
   const router = useRouter();
@@ -102,14 +103,7 @@ function User() {
                     className={openTab === 3 ? 'block' : 'hidden'}
                     id="link3"
                   >
-                    <p>
-                      Efficiently unleash cross-media information without
-                      cross-media value. Quickly maximize timely deliverables
-                      for real-time schemas.
-                      <br />
-                      <br /> Dramatically maintain clicks-and-mortar solutions
-                      without functional solutions.
-                    </p>
+                    <Todos user={foundUser} />
                   </div>
                 </div>
               </div>
