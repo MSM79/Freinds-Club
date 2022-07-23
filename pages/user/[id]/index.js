@@ -1,13 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import Link from 'next/link';
-import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import Head from 'next/Head';
-import { fromJSON } from 'postcss';
 import Photos from '../../../ui/components/Photos';
-import '../../../ui/components/tabs';
-import './style.module.css';
+import Posts from '../../../ui/components/posts';
 
 function User() {
   const router = useRouter();
@@ -94,14 +90,7 @@ function User() {
                     className={openTab === 1 ? 'block' : 'hidden'}
                     id="link1"
                   >
-                    <p>
-                      Collaboratively administrate empowered markets via
-                      plug-and-play networks. Dynamically procrastinate B2C
-                      users after installed base benefits.
-                      <br />
-                      <br /> Dramatically visualize customer directed
-                      convergence without revolutionary ROI.
-                    </p>
+                    <Posts user={foundUser} />
                   </div>
                   <div
                     className={openTab === 2 ? 'block' : 'hidden'}
@@ -172,7 +161,7 @@ function User() {
             <div className="flex flex-wrap justify-center">
               <div className="w-full px-4">
                 <p className="font-light leading-relaxed text-slate-600 mb-4">
-                  title
+                  User id : {foundUser.id}
                 </p>
                 <a
                   href="javascript:;"

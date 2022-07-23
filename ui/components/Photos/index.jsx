@@ -19,7 +19,6 @@ export default function Photos({ user }) {
   if (!photos) return <div>loading...</div>;
 
   const filterAlbum = albums.filter((e) => e.userId === user.id);
-  console.log(filterAlbum);
 
   return (
     <div className="flex flex-wrap w-[100%] justify-center">

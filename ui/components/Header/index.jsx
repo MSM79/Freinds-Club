@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Button from '../Button/button';
 import Search from '../Search/search';
 import User from '../user/user';
-import style from './style.module.css';
 import classNames from 'classnames';
 
 export default function Navbar({ fixed }) {
@@ -49,7 +48,7 @@ export default function Navbar({ fixed }) {
               </svg>
             </button>
           </div>
-          <div className={classNames('w-full flex search', style.search)}>
+          <div className="w-full flex search">
             <Search />
           </div>
           <div
@@ -93,12 +92,7 @@ export default function Navbar({ fixed }) {
             </ul>
           </div>
         </div>
-        <div
-          className={classNames(
-            'absolute left-[34%] top-[87px] w-[370px] h-[300px] overflow-y',
-            style.userContent,
-          )}
-        >
+        <div className="absolute left-[34%] top-[87px] w-[370px] h-[300px] overflow-y">
           {filteredUser.map((user) => (
             <div key={`user-${user.id}`}>
               <Link href={`/user/${encodeURIComponent(user.username)}`}>
